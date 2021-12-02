@@ -105,7 +105,7 @@ def get_ark_tickers(fund, name):
     return tickers
 
 
-st.title("ARK Fund Ticker Fetching Tool")
+st.title("ARK Fund Tools")
 arkk = st.sidebar.checkbox(label="ARKK")
 arkg = st.sidebar.checkbox(label="ARKG")
 arkf = st.sidebar.checkbox(label="ARKF")
