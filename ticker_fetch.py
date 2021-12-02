@@ -46,7 +46,7 @@ arkq = st.sidebar.checkbox(label="ARKQ")
 arkx = st.sidebar.checkbox(label="ARKX")
 prnt = st.sidebar.checkbox(label="PRNT")
 
-analyze = st.button(label = "FETCH TICKERS")
+analyze = st.sidebar.button(label = "FETCH TICKERS")
 
 if analyze:
     if arkg:
