@@ -67,7 +67,7 @@ def get_news_data(tickers):
                                                     subdiv2 = subdiv1.find("div")
                                                     suba = subdiv2.find("a")
                                                     link = suba["href"]
-                                                    st.write(str(link))
+                                                    # st.write(str(link))
                                                     recent_news_list.append((row.text.replace("\xa0\xa0"," "), str(link)))
                 # st.write(((link.split("="))))
                 for item in recent_news_list:
