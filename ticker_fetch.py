@@ -1,6 +1,67 @@
 import requests
 import streamlit as st
+from bs4 import BeautifulSoup
 
+
+def get_news_data(tickers):
+    base_link = "https://finviz.com/quote.ashx?t="
+    links = []
+    for ticker in tickers:
+        links.append(base_link+ticker)
+
+    return_vals = []
+    for link in links:
+        # print("\n")
+        # print("getting news for " + link.split("=")[1])
+        hdr = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+                "X-Requested-With": "XMLHttpRequest"}
+        r = requests.get(link, headers = hdr)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        table = None
+        try:
+            table = soup.find_all("table",{"class": "fullview-news-outer"})
+        except:
+            pass
+        try:
+            if len(table) > 0:
+                rows = table[0].find_all("tr")
+                data = {}
+                months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+                most_recent_date = None
+                most_recent_date_found = False
+                second_most_recent_date = None
+                second_most_recent_date_found = False
+                for row in rows:
+                    for month in months:
+                        if row.text.find(month) != -1:
+                            if most_recent_date_found == False:
+                                most_recent_date = row.text.split(" ")[0]
+                                # print("most recent : " + most_recent_date)
+                                most_recent_date_found = True
+                            else:
+                                if second_most_recent_date_found == False:
+                                    second_most_recent_date = row.text.split(" ")[0]
+                                    # print("second most recent: " + second_most_recent_date)
+                                    second_most_recent_date_found = True
+                recent_news_list = []
+                for row in rows:
+                    if row != None:
+                        if row.text.find(second_most_recent_date) != -1:
+                            break
+                        else:
+                            if row.text.find("Motley Fool") == -1:
+                                if row.text.find("TipRanks") == -1:
+                                    if row.text.find("ACCESSWIRE") == -1:
+                                        if row.text.find("Law Offices") == -1:
+                                            if row.text.find("Business Daily") == -1:
+                                                if row.text.find("INVESTOR ALERT") == -1:
+                                                    recent_news_list.append(row.text.replace("\xa0\xa0"," "))
+                st.write(((link.split("=")[1])))
+                for item in recent_news_list:
+                    st.write("\t" + item)
+        except:
+            pass
 
 def get_ark_tickers(fund, name):
     #this is the link that downloads the csv of the current ARKG holdings
@@ -47,6 +108,37 @@ arkx = st.sidebar.checkbox(label="ARKX")
 prnt = st.sidebar.checkbox(label="PRNT")
 
 analyze = st.sidebar.button(label = "FETCH TICKERS")
+news = st.sidebar.button(label = "FETCH HEADLINES")
+
+if news:
+    if arkg:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS.csv","ARKG")
+        get_news_data(ticks)
+
+    if arkk:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv","ARKK")
+        get_news_data(ticks)
+
+    if arkf:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv", "ARKF")
+        get_news_data(ticks)
+
+    if arkw:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv","ARKW")
+        get_news_data(ticks)
+
+    if arkx:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_SPACE_EXPLORATION_&_INNOVATION_ETF_ARKX_HOLDINGS.csv","ARKX")
+        get_news_data(ticks)
+
+    if arkq:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_AUTONOMOUS_TECH._&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv","ARKQ")
+        get_news_data(ticks)
+
+    if prnt:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/THE_3D_PRINTING_ETF_PRNT_HOLDINGS.csv","PRNT")
+        get_news_data(ticks)
+
 
 if analyze:
     if arkg:
