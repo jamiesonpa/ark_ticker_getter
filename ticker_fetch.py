@@ -71,7 +71,7 @@ def get_news_data(tickers):
                                                     recent_news_list.append((row.text.replace("\xa0\xa0"," "), str(link1)))
                 st.write(((link.split("=")[1])))
                 for item in recent_news_list:
-                    st.write("\t" + item[0] + "[link]("+item[1]+")")
+                    st.write("\t" + item[0] + " [link]("+item[1]+")")
         except:
             pass
 
