@@ -1,8 +1,14 @@
+from PIL.Image import ROTATE_90
 import requests
+import pandas as pd
+from streamlit.elements.arrow import _pandas_style_to_css
+from yahoo_fin import stock_info as si 
+from pandas_datareader import DataReader
+import numpy as np
 import streamlit as st
-import bs4
+import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
-
+import math as maths
 
 def get_news_data(tickers):
     base_link = "https://finviz.com/quote.ashx?t="
