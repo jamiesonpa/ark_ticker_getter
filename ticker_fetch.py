@@ -46,58 +46,60 @@ arkq = st.sidebar.checkbox(label="ARKQ")
 arkx = st.sidebar.checkbox(label="ARKX")
 prnt = st.sidebar.checkbox(label="PRNT")
 
+analyze = st.button(label = "FETCH TICKERS")
 
-if arkg:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS.csv","ARKG")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
-if arkk:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv","ARKK")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
+if analyze:
+    if arkg:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS.csv","ARKG")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
+    if arkk:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv","ARKK")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
 
-if arkf:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv", "ARKF")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
+    if arkf:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv", "ARKF")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
 
-if arkw:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv","ARKW")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
+    if arkw:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv","ARKW")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
 
-if arkx:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_SPACE_EXPLORATION_&_INNOVATION_ETF_ARKX_HOLDINGS.csv","ARKX")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
+    if arkx:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_SPACE_EXPLORATION_&_INNOVATION_ETF_ARKX_HOLDINGS.csv","ARKX")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
 
-if arkq:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_AUTONOMOUS_TECH._&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv","ARKQ")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
+    if arkq:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_AUTONOMOUS_TECH._&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv","ARKQ")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
 
-if prnt:
-    ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/THE_3D_PRINTING_ETF_PRNT_HOLDINGS.csv","PRNT")
-    ts = ""
-    for tick in ticks:
-        tick = tick.strip("\n")
-        ts = ts + tick + "\n"
-    st.write(ts)
+    if prnt:
+        ticks = get_ark_tickers("https://ark-funds.com/wp-content/uploads/funds-etf-csv/THE_3D_PRINTING_ETF_PRNT_HOLDINGS.csv","PRNT")
+        ts = ""
+        for tick in ticks:
+            tick = tick.strip("\n")
+            ts = ts + tick + "\n"
+        st.write(ts)
