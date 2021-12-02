@@ -63,9 +63,11 @@ def get_news_data(tickers):
                                         if row.text.find("Law Offices") == -1:
                                             if row.text.find("Business Daily") == -1:
                                                 if row.text.find("INVESTOR ALERT") == -1:
-                                                    subdiv1 = row.find_all("div")[0]
-                                                    subdiv2 = subdiv1.find_all("a")
-                                                    st.write(str(subdiv2["href"]))
+                                                    subdiv1 = row.find("div")
+                                                    subdiv2 = subdiv1.find("div")
+                                                    suba = subdiv2.find("a")
+                                                    link = suba["href"]
+                                                    st.write(str(link))
                                                     recent_news_list.append(row.text.replace("\xa0\xa0"," "))
                 st.write(((link.split("="))))
                 for item in recent_news_list:
