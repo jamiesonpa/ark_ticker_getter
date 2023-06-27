@@ -1,7 +1,7 @@
 from PIL.Image import ROTATE_90
 import requests
 import pandas as pd
-from streamlit.elements.arrow import _pandas_style_to_css
+#from streamlit.elements.arrow import _pandas_style_to_css
 from yahoo_fin import stock_info as si 
 from pandas_datareader import DataReader
 import numpy as np
